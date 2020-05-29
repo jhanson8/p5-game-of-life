@@ -15,11 +15,18 @@ function make2DArray(cols, rows) {
   let value = 0
   let isRunning = 0
   let play = false 
+  let gen = 0
+  
 
   
   function setup() {
 	
 	createCanvas(500, 500);
+	  // Set text size to 40px 
+	
+      
+	  // Align text to center  
+	textAlign(CENTER, BOTTOM);
 	cols = width / res;
 	rows = height / res;
 
@@ -58,6 +65,11 @@ function make2DArray(cols, rows) {
 
 	  resetButton = createButton("Reset")
 	  resetButton.mousePressed(reset)
+
+	 
+	
+	 
+	  
 
 	
 	noLoop()
@@ -146,13 +158,27 @@ function make2DArray(cols, rows) {
 	 location.reload() 
   }
 
+  function frameCountLoop(){
+	loop()
+	  return str(gen++)
+	  
+	
+  }
+
 
 
 function draw() {
 	frameRate(fr)
+	
 	background(0);
-	text(frameCount, width/2, height);
+	
+
+	text("Gen Count: " + frameCount, width/2, height/2);
+
+	
+
 	if(isRunning == 0){
+		
 	  for (let i = 0; i < cols; i++){
 		for (let j = 0; j < rows; j++){
 		  let x = i * res;
@@ -167,8 +193,11 @@ function draw() {
 		}
 	}
   }
+
+ 
   
 	else if(isRunning == 1){
+	createP(gen++)
 	for (let i = 0; i < cols; i++){
 	  for (let j = 0; j < rows; j++){
 		let x = i * res;
